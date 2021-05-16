@@ -19,7 +19,7 @@ Anonymous functions are converted to binders with deBruin indices, and function 
 λ(π[+(β[0], φ[y])])
 ```
 
-α-equivalence syntax trees are simply equal.
+Because of the indexing, α-equivalent syntax trees are simply equal.
 ``` julia
 > expr_to_abt(:(λ(x -> x + y)), ops) == expr_to_abt(:(λ(z -> z + y)), ops)
 true
