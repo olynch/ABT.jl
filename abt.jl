@@ -34,6 +34,16 @@ end
   OPER(Operator, Vector{ABT})
 end
 
+function Base.:(==)(x::ABT,y::ABT)
+  @match (x,y) begin
+    (FV(v),FV(w)) => v == w
+    (BV(i),BV(j)) => i == j
+    (ABS(x_), ABS(y_)) => x_ == y_
+    (OPER(ox,xs), OPER(oy,ys)) => ox == oy && xs == ys
+    _ => false
+  end
+end
+
 function Base.show(io::IO, m::MIME"text/plain", x::ABT)
   @match x begin
     FV(v) => begin
